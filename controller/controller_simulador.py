@@ -31,15 +31,15 @@ class Simulador_campo_electrico:
         self.add_button = Button(self.add_ax, 'Agregar carga')
         self.add_button.on_clicked(self.agregar_carga)
         # Caja de texto para modificar la masa de la carga principal
-        self.mass_ax = plt.axes([0.15, 0.1, 0.2, 0.07])
-        self.mass_box = TextBox(self.masa_ax, 'Masa principal (kg)', initial=str(self.carga_principal().masa))
-        self.mass_box.on_submit(self.cambiar_masa)
+        self.masa_ax = plt.axes([0.15, 0.1, 0.2, 0.07])
+        self.masa_box = TextBox(self.masa_ax, 'Masa principal (kg)', initial=str(self.carga_principal().masa))
+        self.masa_box.on_submit(self.cambiar_masa)
         # Caja de texto para modificar la magnitud de la carga principal
-        self.q_ax = plt.axes([0.4, 0.1, 0.2, 0.07])
-        self.q_box = TextBox(self.maginutd_ax, 'Carga principal (C)', initial=str(self.carga_principal().magnitud))
-        self.q_box.on_submit(self.cambiar_magnitud)
+        self.magnitud_ax = plt.axes([0.4, 0.1, 0.2, 0.07])
+        self.magnitud_box = TextBox(self.magnitud_ax, 'Carga principal (C)', initial=str(self.carga_principal().magnitud))
+        self.magnitud_box.on_submit(self.cambiar_magnitud)
 
-        self.update_field()
+        self.actualizar_campo_electrico()
     # se define funcion para identificar la carga principal
     def carga_principal(self):
         #devuelve la carga principal
@@ -49,8 +49,8 @@ class Simulador_campo_electrico:
         x = np.linspace(self.xmin, self.xmax, self.grid_points)
         y = np.linspace(self.ymin, self.ymax, self.grid_points)
         X, Y = np.meshgrid(x, y)
-        Ex, Ey = campo_electrico(self.charges, X, Y)
-        dibujar_campo(self.ax, X, Y, Ex, Ey, self.charges)
+        Ex, Ey = campo_electrico(self.cargas, X, Y)
+        dibujar_campo(self.ax, X, Y, Ex, Ey, self.cargas)
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.ymin, self.ymax)
         self.ax.set_title('Simulador de campo eléctrico')
@@ -86,7 +86,7 @@ class Simulador_campo_electrico:
     def agregar_carga(self, event):
         x, y = np.random.uniform(self.xmin, self.xmax), np.random.uniform(self.ymin, self.ymax)
         magnitud = np.random.uniform(-2, 2) * 1e-9
-        self.charges.append(Carga(x, y, magnitud, movible=True))
+        self.cargas.append(Carga(x, y, magnitud, movible=True))
         self.actualizar_campo_electrico()
     def cambiar_masa(self, text):
         try:

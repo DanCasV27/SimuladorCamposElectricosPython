@@ -7,6 +7,6 @@ def dibujar_campo(eje_dibujo,X,Y,Ex,Ey,cargas):
         if getattr(carga,'principal',False):
             color='green'
         eje_dibujo.plot(carga.x, carga.y, 'o', color=color, markersize=15)
-        eje_dibujo.text(carga.x, carga.y, f'{carga.q:.1e}C\n{carga.masa:.1f}kg', color='black',
+        eje_dibujo.text(carga.x, carga.y, f'{carga.magnitud:.1e}C\n{carga.masa:.1f}kg', color='black',
                 ha='center', va='center', fontsize=7)
 
