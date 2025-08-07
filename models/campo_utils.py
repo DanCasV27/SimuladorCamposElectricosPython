@@ -22,4 +22,4 @@ def campo_electrico(cargas, X , Y):
         #ahora aplicamos la ley de coulumb
         Ex+= K*carga.magnitud * dx/(r2*np.sqrt(r2))
         Ey+= K*carga.magnitud * dy/(r2*np.sqrt(r2))
-        return Ex, Ey
+    return Ex, Ey
