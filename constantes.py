@@ -1,0 +1,1 @@
+K = 8.9875517873681764e9  # Constante de Coulomb (N·m²/C²)
