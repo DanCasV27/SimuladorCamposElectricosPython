@@ -30,10 +30,6 @@ class Simulador_campo_electrico:
         self.add_ax = plt.axes([0.7, 0.1, 0.1, 0.07])
         self.add_button = Button(self.add_ax, 'Agregar carga')
         self.add_button.on_clicked(self.agregar_carga)
-        # Caja de texto para modificar la masa de la carga principal
-        self.masa_ax = plt.axes([0.15, 0.1, 0.2, 0.07])
-        self.masa_box = TextBox(self.masa_ax, 'Masa principal (kg)', initial=str(self.carga_principal().masa))
-        self.masa_box.on_submit(self.cambiar_masa)
         # Caja de texto para modificar la magnitud de la carga principal
         self.magnitud_ax = plt.axes([0.4, 0.1, 0.2, 0.07])
         self.magnitud_box = TextBox(self.magnitud_ax, 'Carga principal (C)', initial=str(self.carga_principal().magnitud))
@@ -88,13 +84,6 @@ class Simulador_campo_electrico:
         magnitud = np.random.uniform(-2, 2) * 1e-9
         self.cargas.append(Carga(x, y, magnitud, movible=True))
         self.actualizar_campo_electrico()
-    def cambiar_masa(self, text):
-        try:
-            masa = float(text)
-            self.carga_principal().masa = masa
-            self.actualizar_campo_electrico()
-        except ValueError:
-            pass
     def cambiar_magnitud(self, text):
         try:
             pmagnitud = float(text)
